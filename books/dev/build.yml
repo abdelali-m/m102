@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+
+  # db
+  # ========================================= 
+  # ...
+  storage:
+    build:
+      context: ../../images/storage
+      dockerfile: dev.dockerfile
+    network_mode: "host" 
+
+

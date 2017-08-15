@@ -1,0 +1,28 @@
+version: '3'
+
+# ..volumes
+# ------------------
+volumes:
+  storage_data:
+
+# ..services
+# ------------------
+services:
+
+  # db
+  # ========================================= 
+  # ...
+  storage:
+    image: ${PROJECT}_storage
+    network_mode: "host" 
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_ADMIN_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_ADMIN_PASSWORD}
+    volumes:
+      - storage_data:/data/db
+      - ../../images/storage/mongod.conf:/etc/mongod.conf      
+    command:
+      - -f
+      - /etc/mongod.conf
+
+

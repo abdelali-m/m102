@@ -1,0 +1,48 @@
+version: '3'
+
+# ..networks
+# ------------------
+networks:
+  netmain:
+    driver: bridge
+
+# ..volumes
+# ------------------
+volumes:
+  storage_data:
+
+# ..services
+# ------------------   
+services:
+
+  # db
+  # ========================================= 
+  # ...
+  storage:
+    image: ${PROJECT}_storage
+    expose:
+      - "27017"
+    ports:
+      - "27017:27017"
+    networks:
+      - netmain
+    command:
+      - --auth
+      - --bind_ip_all
+      - -f
+      - /etc/mongod.conf
+    volumes:
+      - storage_data:/data/db
+      - ../../images/storage/mongod.conf:/etc/mongod.conf
+
+  mongoshell:
+    image: ${PROJECT}_storage
+    tty: true    
+    networks:
+      - netmain
+    depends_on:
+      - storage      
+    volumes:      
+      - ../../data:/mongoshell_data
+    # ................      
+    command: /bin/bash
