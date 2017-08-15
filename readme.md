@@ -90,7 +90,11 @@ answer: 3
 HW1-3
 --------------------------------------------------------------------
 
-Answer: db.products.find({"brand":"ACME"})
+Answer: 
+
+```
+db.products.find({"brand":"ACME"})
+```
 
 
 HW1-4
