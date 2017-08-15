@@ -99,10 +99,6 @@ HW1-4
 Answer:  
 
 ```
-db.products.find({},{"name":1, _id:0}).sort("name":1);
-```
-
-```
 var c = db.products.find({},{name:1, _id:0}).sort({name:1});
 while(c.hasNext()){print(c.next().name)};
 ```
