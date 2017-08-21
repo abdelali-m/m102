@@ -73,6 +73,21 @@ mongorestore --host storage -u adminmaster -p passmaster dump
 ```
 
 
+Mongo restore json
+--------------------------------------------------------------------
+
+```
+mongoimport --host storage --port 27017 -u adminmaster -p passmaster --authenticationDatabase admin --drop --db pcat --collection products --file products.json
+```
+
+Mongo restore js
+--------------------------------------------------------------------
+
+```
+mongo storage:27017/admin -u adminmaster -p passmaster --shell homework.js
+```
+
+
 HW1-1
 --------------------------------------------------------------------
 
@@ -112,3 +127,46 @@ var c = db.products.find({}).sort({name:1});
 c.forEach(function(doc){print(doc.name)});
 ```
 
+
+HW2-1
+--------------------------------------------------------------------
+
+```
+b = db.products_bak; db.products.find().forEach(function(o){b.insert(o)})
+b.count()
+
+```
+
+Answer: 3.05
+
+
+HW2-2
+--------------------------------------------------------------------
+
+```
+db.products.insertOne({
+    "_id" : "ac9",
+    "name" : "AC9 Phone",
+    "brand" : "ACME",
+    "type" : "phone",
+    "price" : 333,
+    "warranty_years" : 0.25,
+    "available" : true
+});
+```
+
+```
+var doc = db.products.findOne({_id : ObjectId("507d95d5719dbef170f15c00")})
+doc.term_years = 3;
+doc.limits.sms.over_rate = 0.01;
+db.products.save(doc)
+```
+
+Answer:   0.050.019031
+
+HW2-3
+--------------------------------------------------------------------
+
+db.products.find({"limits.voice":{$exists:true}})
+
+Answer:   3
