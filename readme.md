@@ -220,9 +220,11 @@ Answer:   12
 HW3-3
 --------------------------------------------------------------------
 
-Answer:     Q1:4
-            Q2:4
-            Q3:Yes
+Answer:     
+
+* Q1:4
+* Q2:4
+* Q3:Yes
 
 HW3-4
 --------------------------------------------------------------------
@@ -231,5 +233,7 @@ exp = db.products.explain("executionStats")
 exp.find({"for":"ac3"})
 
 
-Answer:     dockument lavel locking
-            Data coompression
+Answer:     
+
+* dockument lavel locking
+* Data coompression
