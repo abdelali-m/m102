@@ -91,6 +91,28 @@ shell_mongoshell:
 		--name $(PROJECT)_mongoshell_1 \
 		mongoshell
 
+# target: shell_mongoshell2 - shell mongoshell container
+.PHONY: shell_mongoshell2
+shell_mongoshell2:
+	@docker-compose \
+		-p $(PROJECT) \
+		-f run.yml \
+		run \
+		--rm \
+		--name $(PROJECT)_mongoshell_2 \
+		mongoshell2
+
+# target: shell_mongoshell3 - shell mongoshell container
+.PHONY: shell_mongoshell3
+shell_mongoshell3:
+	@docker-compose \
+		-p $(PROJECT) \
+		-f run.yml \
+		run \
+		--rm \
+		--name $(PROJECT)_mongoshell_3 \
+		mongoshell3		
+
 
 
 # target:

@@ -46,3 +46,28 @@ services:
       - ../../data:/mongoshell_data
     # ................      
     command: /bin/bash
+
+
+  mongoshell2:
+    image: ${PROJECT}_storage
+    tty: true    
+    networks:
+      - netmain
+    depends_on:
+      - storage      
+    volumes:      
+      - ../../data:/mongoshell_data
+    # ................      
+    command: /bin/bash
+
+  mongoshell3:
+    image: ${PROJECT}_storage
+    tty: true    
+    networks:
+      - netmain
+    depends_on:
+      - storage      
+    volumes:      
+      - ../../data:/mongoshell_data
+    # ................      
+    command: /bin/bash    

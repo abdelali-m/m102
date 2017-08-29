@@ -39,7 +39,21 @@ make shell_mongoshell
 then write:
 
 ```
-mongo admin --host storage -u adminmaster -p passmaster
+mongo storage:27017/admin -u adminmaster -p passmaster
+```
+
+```
+db.createUser({
+    user: "usermaster",
+    pwd: "passmaster",
+    roles: ["dbAdmin"]
+});
+
+db.createUser({
+    user: "usermaster",
+    pwd: "passmaster",
+    roles: ["dbAdmin","dbOwner", "readWrite", "userAdmin"]
+});
 ```
 
 
@@ -170,3 +184,52 @@ HW2-3
 db.products.find({"limits.voice":{$exists:true}})
 
 Answer:   3
+
+
+HW3-1
+--------------------------------------------------------------------
+
+```
+use performance
+db.createUser({
+    user: "usermaster",
+    pwd: "passmaster",
+    roles: ["dbAdmin","dbOwner", "readWrite", "userAdmin"]
+});
+```
+
+```
+homework.init()
+```
+
+
+```
+db.sensor_readings.createIndex({"active":1,"tstamp":1})
+db.sensor_readings.getIndexes()
+
+```
+
+Answer:   6
+
+HW3-2
+--------------------------------------------------------------------
+
+Answer:   12
+
+
+HW3-3
+--------------------------------------------------------------------
+
+Answer:     Q1:4
+            Q2:4
+            Q3:Yes
+
+HW3-4
+--------------------------------------------------------------------
+
+exp = db.products.explain("executionStats")
+exp.find({"for":"ac3"})
+
+
+Answer:     dockument lavel locking
+            Data coompression
