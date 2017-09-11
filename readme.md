@@ -14,6 +14,7 @@ Another
 - https://github.com/ankurpatel18/M102-MongoDB-for-DBAs
 - http://dailymongodb.blogspot.ru/2016/11/mongodb-m102.html
 - https://www.youtube.com/watch?v=cs8CwuCPLic (MongoDB m102 Final Exam)
+- http://www.sherbaz.com/2014/09/mongodb-m102-final-exam-september-2014/ (Final Exam)
 
 
 Getting Started with Docker and Docker Compose for Local Development
@@ -332,7 +333,3 @@ db.oplog.rs.find( { } ).sort( { $natural : 1 } ).limit( 1 ).next( ).o.msg[0]
 
 
 
-final-exam
--------------------------------------------------
-
-http://www.sherbaz.com/2014/09/mongodb-m102-final-exam-september-2014/
