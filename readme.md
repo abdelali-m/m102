@@ -1,12 +1,19 @@
 M102
 ========================
 
-Docker environment for course of https://university.mongodb.com/courses/M102/about
+Docker environment for course M102: MongoDB for DBAs (https://university.mongodb.com/courses/M102/about)
 
 Technology
 ----------------
 - docker
 - mongodb 3.5
+
+
+Another
+-------
+- https://github.com/ankurpatel18/M102-MongoDB-for-DBAs
+- http://dailymongodb.blogspot.ru/2016/11/mongodb-m102.html
+- https://www.youtube.com/watch?v=cs8CwuCPLic (MongoDB m102 Final Exam)
 
 
 Getting Started with Docker and Docker Compose for Local Development
@@ -237,3 +244,95 @@ Answer:
 
 * dockument lavel locking
 * Data coompression
+
+
+
+HW4-1
+--------------------------------------------------------------------
+
+cd /shared/hw4-1/
+mkdir -p "~/hw4-1/"{1,2,3}
+
+mongod --dbpath 1 --port 27001 --smallfiles --oplogSize 50
+
+mongod --dbpath /home/vagrant/hw4-1/1 --port 27001 --smallfiles --oplogSize 50
+
+mongo --port 27001 --shell replication.js
+
+homework.init()
+homework.a()
+
+Answer:     
+    5001
+
+
+HW4-2
+--------------------------------------------------------------------    
+
+ls -la /home/vagrant/hw4-1/1
+less /home/vagrant/hw4-1/1/mongo.log
+
+
+rs.initiate()
+rs.initiate({
+    _id: 'INSECURED',
+    members: [
+        { _id: 1, host: 'm102.mongodb.university:27001' },
+        { _id: 2, host: 'm102.mongodb.university:27002' },
+        { _id: 3, host: 'm102.mongodb.university:27003' }
+    ]
+})
+
+Answer:     
+    5002
+
+
+HW4-3
+--------------------------------------------------------------------        
+
+homework.c()
+
+Answer:     
+    5
+
+
+HW4-4
+--------------------------------------------------------------------        
+
+mongo --port 27001 --shell replication.js
+
+https://docs.mongodb.com/manual/tutorial/remove-replica-set-member/
+
+use admin
+ db.shutdownServer() 
+
+rs.remove("m102.mongodb.university:27001")
+rs.remove("m102.mongodb.university:27001",{force:true})
+
+
+var conf = rs.config()
+conf.members = conf.members.slice(1, 3)
+rs.reconfig(conf,{force:true})
+rs.reconfig(conf)
+
+
+
+rs.reconfig(conf2,{force:true})
+
+rs.status()
+
+rs.slaveOk()
+
+
+HW4-4
+--------------------------------------------------------------------        
+db.oplog.rs.find()
+db.oplog.rs.stats()
+db.oplog.rs.find( { } ).sort( { $natural : 1 } ).limit( 1 ).next( ).o.msg[0]
+
+
+
+final-exam
+-------------------------------------------------
+
+http://www.sherbaz.com/2014/09/mongodb-m102-final-exam-september-2014/
